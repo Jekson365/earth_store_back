@@ -45,3 +45,15 @@ group :development do
   # gem "spring"
 end
 
+
+gem "devise", "~> 4.9"
+
+gem "pry-rails", "~> 0.3.11"
+
+gem "jwt", "~> 2.8"
+
+gem "bcrypt", "~> 3.1"
+
+gem "carrierwave", "~> 3.0"
+
+gem "blueprinter", "~> 1.0"
