@@ -4,11 +4,15 @@ class UsersController < ApplicationController
     user.role_id = 1
     if is_valid?
       unless user.save
-        render json: user.errors.full_messages
+        render json: user.errors.full_messages,status: :conflict
       end
     else
       render json: 'password does not match'
     end
+  end
+  def get_current_user
+    token = decode_token(params[:token])
+    render json: User.find(token[:user_id])
   end
   def is_valid?
     if user_params[:password] == user_params[:password_confirmation]

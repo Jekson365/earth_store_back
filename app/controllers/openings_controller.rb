@@ -1,9 +1,11 @@
 class OpeningsController < ApplicationController
   before_action :set_opening, only: %i[ show update destroy ]
+  before_action :authorize_request,only: [:update]
+  before_action :authorize_if_admin,only: [:update]
 
   # GET /openings
   def index
-    @openings = Opening.all
+    @openings = Opening.first
 
     render json: @openings
   end
