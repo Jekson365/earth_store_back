@@ -39,13 +39,14 @@ class PriorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_prior
-      @prior = Prior.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def prior_params
-      params.require(:prior).permit(:title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_prior
+    @prior = Prior.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def prior_params
+    params.require(:prior).permit(:title, :description, :icon_id)
+  end
 end

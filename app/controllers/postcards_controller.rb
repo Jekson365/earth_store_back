@@ -3,7 +3,7 @@ class PostcardsController < ApplicationController
 
   # GET /postcards
   def index
-    @postcards = Postcard.all
+    @postcards = Postcard.first
 
     render json: @postcards
   end

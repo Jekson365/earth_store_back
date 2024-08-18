@@ -10,7 +10,7 @@ class AboutsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create about" do
+  test "should create abouts" do
     assert_difference("About.count") do
       post abouts_url, params: { about: { description: @about.description, title: @about.title } }, as: :json
     end
@@ -18,17 +18,17 @@ class AboutsControllerTest < ActionDispatch::IntegrationTest
     assert_response :created
   end
 
-  test "should show about" do
+  test "should show abouts" do
     get about_url(@about), as: :json
     assert_response :success
   end
 
-  test "should update about" do
+  test "should update abouts" do
     patch about_url(@about), params: { about: { description: @about.description, title: @about.title } }, as: :json
     assert_response :success
   end
 
-  test "should destroy about" do
+  test "should destroy abouts" do
     assert_difference("About.count", -1) do
       delete about_url(@about), as: :json
     end

@@ -29,8 +29,11 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    CategoryService.new(nil, @category).destroy
-    head :no_content
+    if CategoryService.new(nil, @category).destroy
+      render json: 'removed!'
+    else
+      render json: @category.errors.full_messages
+    end
   end
 
   private

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :authorize_request
-  before_action :authorize_if_admin
+  # before_action :authorize_request
+  # before_action :authorize_if_admin
 
   def index
     service = Products::ProductService.new(params)

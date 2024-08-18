@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_11_184429) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_18_103131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "about_images", force: :cascade do |t|
+    t.string "image", null: false
+    t.bigint "about_id"
+    t.index ["about_id"], name: "index_about_images_on_about_id"
+  end
 
   create_table "abouts", force: :cascade do |t|
     t.string "title"
@@ -84,6 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_184429) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "icon_id"
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -131,6 +138,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_11_184429) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "about_images", "abouts"
   add_foreign_key "additional_descriptions", "products"
   add_foreign_key "additional_texts", "additional_descriptions"
   add_foreign_key "carts", "products"

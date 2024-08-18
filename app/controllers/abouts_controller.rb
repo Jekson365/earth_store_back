@@ -3,9 +3,7 @@ class AboutsController < ApplicationController
 
   # GET /abouts
   def index
-    @abouts = About.all
-
-    render json: @abouts
+    render json: Abouts::AboutBlueprint.render(About.all, view: :normal)
   end
 
   # GET /abouts/1
@@ -16,7 +14,6 @@ class AboutsController < ApplicationController
   # POST /abouts
   def create
     @about = About.new(about_params)
-
     if @about.save
       render json: @about, status: :created, location: @about
     else
@@ -39,13 +36,14 @@ class AboutsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_about
-      @about = About.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def about_params
-      params.require(:about).permit(:title, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_about
+    @about = About.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def about_params
+    params.permit(:title, :description, about_image_attributes: [:image])
+  end
 end
