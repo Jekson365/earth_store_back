@@ -18,7 +18,6 @@ class OpeningsController < ApplicationController
   # POST /openings
   def create
     @opening = Opening.new(opening_params)
-
     if @opening.save
       render json: @opening, status: :created, location: @opening
     else
@@ -47,7 +46,9 @@ class OpeningsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def opening_params
-      params.require(:opening).permit(:title, :min_title)
+  def opening_params
+    params.require(:opening).permit(:title, :min_title, :image).to_h.reject { |_, value| value.blank? }.then do |filtered_params|
+      ActionController::Parameters.new(filtered_params).permit(:title, :min_title, :image)
     end
+  end
 end

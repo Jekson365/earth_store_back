@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :customers
   resources :additional_texts
   resources :additional_descriptions
+  resources :featured_products
+
   devise_for :users
   post "/create_user",to: 'users#new'
   post '/login',to: 'authentication#login'
