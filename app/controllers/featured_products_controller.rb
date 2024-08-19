@@ -6,7 +6,8 @@ class FeaturedProductsController < ApplicationController
   end
 
   def create
-    featured = FeaturedProduct.new(featured_product_params)
+    featured = FeaturedProduct.new
+    featured.product_id = featured_product_params[:product_id]
     if featured.save
       render json: featured
     end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :additional_texts
   resources :additional_descriptions
   resources :featured_products
+  resources :contact_infos
 
   devise_for :users
   post "/create_user",to: 'users#new'

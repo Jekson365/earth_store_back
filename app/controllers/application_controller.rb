@@ -23,7 +23,10 @@ class ApplicationController < ActionController::API
   rescue ActiveRecord::RecordNotFound, JWT::DecodeError
     render json: { errors: 'Unauthorized' }, status: :unauthorized
   end
+  def authorize_api_key
+    api_key = request.headers['API_KEY']
 
+  end
   def decode_token(token)
     JWT.decode(token, Rails.application.secrets.secret_key_base)[0].with_indifferent_access
   rescue JWT::DecodeError

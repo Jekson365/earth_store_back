@@ -47,8 +47,8 @@ class OpeningsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
   def opening_params
-    params.require(:opening).permit(:title, :min_title, :image).to_h.reject { |_, value| value.blank? }.then do |filtered_params|
-      ActionController::Parameters.new(filtered_params).permit(:title, :min_title, :image)
-    end
+    permitted_params = [:title, :min_title]
+    permitted_params << :image if params[:opening][:image].present?
+    params.require(:opening).permit(permitted_params)
   end
 end

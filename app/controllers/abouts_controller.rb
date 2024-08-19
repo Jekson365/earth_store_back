@@ -1,5 +1,7 @@
 class AboutsController < ApplicationController
   before_action :set_about, only: %i[ show update destroy ]
+  before_action :authorize_request,only: [:update,:create]
+  before_action :authorize_if_admin, only: [:update, :create]
 
   # GET /abouts
   def index

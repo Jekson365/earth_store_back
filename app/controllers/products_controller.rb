@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
-  # before_action :authorize_request
-  # before_action :authorize_if_admin
+  before_action :authorize_request, only: [:create,:update]
+  before_action :authorize_if_admin, only: [:create,:update]
 
   def index
     service = Products::ProductService.new(params)
-    render json: Products::ProductBlueprint.render(service.list_products,view: :show)
+    render json: Products::ProductBlueprint.render(service.list_products, view: :show)
   end
 
   def create
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
     service = Products::ProductService.new(params)
     result = service.show_product
     if result
-      render json: Products::ProductBlueprint.render(result,view: :show)
+      render json: Products::ProductBlueprint.render(result, view: :show)
     else
       render json: { error: 'Product not found' }, status: :not_found
     end
