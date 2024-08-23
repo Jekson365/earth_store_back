@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_164854) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_23_092539) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -112,6 +112,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_164854) do
   create_table "product_images", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.string "image"
+    t.boolean "main", default: false
     t.index ["product_id"], name: "index_product_images_on_product_id"
   end
 

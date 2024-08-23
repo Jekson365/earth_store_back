@@ -11,11 +11,15 @@ Rails.application.routes.draw do
   resources :additional_descriptions
   resources :featured_products
   resources :contact_infos
+  resources :carts
 
   devise_for :users
   post "/create_user",to: 'users#new'
   post '/login',to: 'authentication#login'
   post '/get_current_user',to:'users#get_current_user'
+  get '/categories_count',to: 'categories#select_by_count'
+  post '/cart_items',to: 'carts#cart_items'
+  post '/destroy_cart_items',to: 'carts#destroy_cart_items'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

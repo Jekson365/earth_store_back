@@ -6,6 +6,14 @@ class CategoriesController < ApplicationController
     render json: Categories::CategoriesBlueprint.render(categories)
   end
 
+  def select_by_count
+    result = ActiveRecord::Base.connection.execute('SELECT COUNT(category_id),categories.name,
+      categories.id FROM categories LEFT JOIN products ON categories.id = products.category_id
+      GROUP BY category_id,categories.name,categories.id')
+
+    render json: result.as_json
+  end
+
   def show
     render json: Categories::CategoriesBlueprint.render(CategoryService.new(nil, @category).show)
   end
