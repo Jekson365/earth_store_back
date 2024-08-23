@@ -46,6 +46,6 @@ class PostcardsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def postcard_params
-      params.require(:postcard).permit(:title, :min_title)
+      params.require(:postcard).permit(:title, :min_title,:image)
     end
 end
