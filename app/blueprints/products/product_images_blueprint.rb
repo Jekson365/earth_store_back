@@ -1,5 +1,5 @@
 module Products
   class ProductImagesBlueprint < Blueprinter::Base
-    fields :image
+    fields :image,:main
   end
 end

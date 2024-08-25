@@ -5,7 +5,7 @@ class OpeningsController < ApplicationController
 
   # GET /openings
   def index
-    @openings = Opening.first
+    @openings = OpeningBlueprint.render(Opening.first,view: :normal)
 
     render json: @openings
   end
@@ -47,8 +47,10 @@ class OpeningsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
   def opening_params
-    permitted_params = [:title, :min_title]
-    permitted_params << :image if params[:opening][:image].present?
-    params.require(:opening).permit(permitted_params)
+    params.require(:opening).permit(
+      :title,
+      :min_title,
+      opening_images_attributes: [:id, :image, :_destroy]
+    )
   end
 end

@@ -1,6 +1,6 @@
 class FeaturedProduct < ApplicationRecord
   belongs_to :product
-  validate :max_three,on: :create
+  # validate :max_three,on: :create
 
   def max_three
     if FeaturedProduct.count >= 3
