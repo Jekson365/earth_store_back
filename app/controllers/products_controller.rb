@@ -54,6 +54,6 @@ class ProductsController < ApplicationController
   end
 
   def update_params
-    params.permit(:id, :title, :price, :description, :category_id)
+    params.permit(:id, :title, :price,:sale_price, :description, :category_id)
   end
 end

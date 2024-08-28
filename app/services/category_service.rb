@@ -18,7 +18,7 @@ class CategoryService
     if category.save
       category
     else
-      category.errors
+      category.errorps
     end
   end
 
@@ -31,6 +31,9 @@ class CategoryService
   end
 
   def destroy
-    @category.destroy
+    Product.where(category_id: @category['id']).update_all(category_id: 6)
+    if @category.destroy
+      @category
+    end
   end
 end

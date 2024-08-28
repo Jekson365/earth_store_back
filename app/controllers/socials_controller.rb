@@ -15,12 +15,11 @@ class SocialsController < ApplicationController
 
   # POST /socials
   def create
-    @social = Social.new(social_params)
-
-    if @social.save
-      render json: @social, status: :created, location: @social
-    else
-      render json: @social.errors, status: :unprocessable_entity
+    socials_links = params['_json']
+    socials_links.each do |e|
+      social = Social.find(e['id'])
+      social.social_link = e['social_link']
+      social.save
     end
   end
 
@@ -46,6 +45,6 @@ class SocialsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def social_params
-      params.require(:social).permit(:title, :social_link)
+      params.permit(:title, :social_link)
     end
 end

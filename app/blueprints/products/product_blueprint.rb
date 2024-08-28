@@ -3,7 +3,7 @@ module Products
     view :show do
       association :product_images,blueprint: ProductImagesBlueprint
       association :category,blueprint: Categories::CategoriesBlueprint
-      fields :title,:price,:description,:id,:sale_price
+      fields :title,:price,:description,:id,:sale_price,:amount
     end
   end
 end

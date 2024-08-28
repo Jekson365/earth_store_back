@@ -44,11 +44,11 @@ module Products
     private
 
     def product_params
-      @params.permit(:title, :price, :description, :category_id,:sale_price, product_images_attributes: [:image])
+      @params.permit(:title, :price, :description, :category_id, :sale_price, :amount, product_images_attributes: [:image])
     end
 
     def update_params
-      @params.permit(:id, :title, :price, :description,:sale_price, :category_id)
+      @params.permit(:id, :title, :price, :description, :sale_price, :amount, :category_id)
     end
   end
 end

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :products
   resources :categories
+  resources :shop_sliders
   # Defines the root path route ("/")
   # root "posts#index"
 end
