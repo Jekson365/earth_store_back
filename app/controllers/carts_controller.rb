@@ -10,6 +10,7 @@ class CartsController < ApplicationController
 
   def cart_items
     user_id = cart_index_params[:user_id]
+
     query = "
            SELECT  products.title,users.email,products.id as product_id,price,product_images.id as image_id,
         CONCAT('/uploads/product_image/image/',
@@ -44,6 +45,6 @@ class CartsController < ApplicationController
   end
 
   def cart_index_params
-    params.permit(:user_id)
+    params.require(:cart).permit(:user_id)
   end
 end
