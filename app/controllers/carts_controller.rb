@@ -19,7 +19,7 @@ class CartsController < ApplicationController
         LEFT JOIN products ON carts.product_id = products.id
         LEFT JOIN users ON carts.user_id = users.id
         LEFT JOIN product_images ON products.id = product_images.product_id
-        WHERE users.id = #{user_id} AND product_images.main = true
+        WHERE users.id = #{user_id} AND product_images.main = false
         GROUP BY products.id,products.title,users.email,price,image_url,product_images.id
           "
     result = ActiveRecord::Base.connection.execute(query)
