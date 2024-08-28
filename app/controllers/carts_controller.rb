@@ -9,6 +9,7 @@ class CartsController < ApplicationController
   end
 
   def cart_items
+    user_id = cart_index_params[:user_id]
     query = "
            SELECT  products.title,users.email,products.id as product_id,price,product_images.id as image_id,
         CONCAT('/uploads/product_image/image/',
@@ -17,7 +18,7 @@ class CartsController < ApplicationController
         LEFT JOIN products ON carts.product_id = products.id
         LEFT JOIN users ON carts.user_id = users.id
         LEFT JOIN product_images ON products.id = product_images.product_id
-        WHERE users.id = #{cart_index_params[:user_id]} AND product_images.main = true
+        WHERE users.id = #{user_id} AND product_images.main = true
         GROUP BY products.id,products.title,users.email,price,image_url,product_images.id
           "
     result = ActiveRecord::Base.connection.execute(query)
