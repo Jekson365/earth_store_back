@@ -257,6 +257,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9)
   jwt (~> 2.8)
+  mail (~> 2.8)
   pg (~> 1.1)
   pry-rails (~> 0.3.11)
   puma (>= 5.0)

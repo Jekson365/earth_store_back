@@ -57,3 +57,5 @@ gem "bcrypt", "~> 3.1"
 gem "carrierwave", "~> 3.0"
 
 gem "blueprinter", "~> 1.0"
+
+gem "mail", "~> 2.8"
