@@ -37,12 +37,12 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'server.testpuzzle.ge', port: 80 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587, # Default port for MailCatcher or MailHog
-    domain:               'localhost',
+    domain:               'server.testpuzzle.ge',
     user_name:            'jeko.erg@gmail.com',  # Usually not needed for local testing
     password:             'ovrv pdyy cggx wffi',  # Usually not needed for local testing
     authentication:       'plain',  # Usually not needed for local testing
