@@ -3,10 +3,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     user.role_id = 1
     if is_valid?
-      if user.save
-        UserMailer.confirmation_email(user).deliver_now
-      else
-
+      unless user.save
         render json: user.errors.full_messages, status: :conflict
       end
     else
@@ -17,17 +14,15 @@ class UsersController < ApplicationController
   def confirm_email
     user = User.find_by(confirmation_token: params[:token])
 
-    if user && user.confirmation_sent_at >= 2.days.ago
-      user.update(confirmed_at: Time.now.utc, confirmation_token: nil)
-      render json: { message: "Email confirmed successfully!" }, status: :ok
-    else
-      render json: { error: "Invalid or expired token" }, status: :unprocessable_entity
+    if user.present?
+      user.confirm_email
+      render json: 'user confirmed'
     end
   end
 
   def get_current_user
     token = decode_token(params[:token])
-    render json: User.find(token[:user_id])
+    render json: UsersBlueprint.render(User.find(token[:user_id]),view: :normal)
   end
 
   def is_valid?

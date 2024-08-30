@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/categories_count',to: 'categories#select_by_count'
   post '/cart_items',to: 'carts#cart_items'
   post '/destroy_cart_items',to: 'carts#destroy_cart_items'
-  get '/users/confirm', to: 'users#confirm_email'
+  get '/users/confirm/:token', to: 'users#confirm_email', as: :confirm_email
   post '/remove_image/:id',to: 'opening_images#remove_image'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

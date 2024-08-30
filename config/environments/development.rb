@@ -35,13 +35,14 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'smtp.mailtrap.io',
+    address:              'smtp.gmail.com',
     port:                 587, # Default port for MailCatcher or MailHog
-    domain:               'server.testpuzzle.ge',
-    user_name:            '912c4ac9e0098d',  # Usually not needed for local testing
-    password:             'd20e4d51d064d0',  # Usually not needed for local testing
+    domain:               'localhost',
+    user_name:            'jeko.erg@gmail.com',  # Usually not needed for local testing
+    password:             'ovrv pdyy cggx wffi',  # Usually not needed for local testing
     authentication:       'plain',  # Usually not needed for local testing
     enable_starttls_auto: true # No need for TLS in local testing
   }
