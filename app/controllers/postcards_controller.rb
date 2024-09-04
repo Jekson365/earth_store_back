@@ -3,10 +3,9 @@ class PostcardsController < ApplicationController
 
   # GET /postcards
   def index
-    view = params[:locale] == 'ka' ? :normal_ka : :normal
     @postcards = Postcard.first
 
-    render json: PostcardBlueprint.render(@postcards, view: view)
+    render json: PostcardBlueprint.render(@postcards, view: :normal)
   end
 
   # GET /postcards/1
@@ -48,6 +47,6 @@ class PostcardsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def postcard_params
-    params.require(:postcard).permit(:title, :min_title, :title_ka, :min_title_ka, :image)
+    params.require(:postcard).permit(:title, :min_title, :image)
   end
 end
