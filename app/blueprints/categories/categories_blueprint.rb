@@ -1,6 +1,8 @@
 module Categories
   class CategoriesBlueprint < Blueprinter::Base
-    identifier :id
-    fields :name
+    view :normal do
+      identifier :id
+      fields :name
+    end
   end
 end

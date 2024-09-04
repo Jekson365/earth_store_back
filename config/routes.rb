@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
   resources :shops
   resources :socials
-  resources :openings
+  resources :openings do
+    collection do
+      get ':locale',to: 'openings#index'
+    end
+  end
   resources :contacts
-  resources :postcards
+  resources :postcards do
+    collection do
+      get ':locale',to: 'postcards#index'
+    end
+  end
   resources :abouts
   resources :priors
   resources :customers
@@ -17,7 +25,7 @@ Rails.application.routes.draw do
   post "/create_user",to: 'users#new'
   post '/login',to: 'authentication#login'
   post '/get_current_user',to:'users#get_current_user'
-  get '/categories_count',to: 'categories#select_by_count'
+  get '/categories_count/:locale',to: 'categories#select_by_count'
   post '/cart_items',to: 'carts#cart_items'
   post '/destroy_cart_items',to: 'carts#destroy_cart_items'
   get '/users/confirm/:token', to: 'users#confirm_email', as: :confirm_email

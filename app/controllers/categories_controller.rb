@@ -3,15 +3,18 @@ class CategoriesController < ApplicationController
 
   def index
     categories = CategoryService.new.index
-    render json: Categories::CategoriesBlueprint.render(categories)
+    render json: Categories::CategoriesBlueprint.render(categories,view: :normal)
   end
 
   def select_by_count
-    result = ActiveRecord::Base.connection.execute('SELECT COUNT(category_id),categories.name,
-      categories.id FROM categories LEFT JOIN products ON categories.id = products.category_id
-      GROUP BY category_id,categories.name,categories.id')
+    locale = params[:locale]
 
-    render json: result.as_json
+    categories = Category
+                   .left_joins(:products)
+                   .select("categories.id, #{locale == 'ka' ? 'categories.name_ka AS name' : 'categories.name'}, COUNT(products.category_id)")
+                   .group("categories.id, #{locale == 'en' ? 'categories.name_ka' : 'categories.name'}, categories.name_ka")
+
+    render json: categories.as_json
   end
 
   def show

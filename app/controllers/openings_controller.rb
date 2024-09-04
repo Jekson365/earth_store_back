@@ -5,7 +5,9 @@ class OpeningsController < ApplicationController
 
   # GET /openings
   def index
-    @openings = OpeningBlueprint.render(Opening.first,view: :normal)
+    locale = params[:locale]
+    view = locale == 'ka' ? :normal_ka : :normal
+    @openings = OpeningBlueprint.render(Opening.first,view: view)
 
     render json: @openings
   end
@@ -50,6 +52,8 @@ class OpeningsController < ApplicationController
     params.require(:opening).permit(
       :title,
       :min_title,
+      :min_title_ka,
+      :title_ka,
       opening_images_attributes: [:id, :image, :_destroy]
     )
   end

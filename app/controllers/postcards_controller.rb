@@ -3,9 +3,10 @@ class PostcardsController < ApplicationController
 
   # GET /postcards
   def index
+    view = params[:locale] == 'ka' ? :normal_ka : :normal
     @postcards = Postcard.first
 
-    render json: @postcards
+    render json: PostcardBlueprint.render(@postcards, view: view)
   end
 
   # GET /postcards/1
@@ -39,13 +40,14 @@ class PostcardsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_postcard
-      @postcard = Postcard.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def postcard_params
-      params.require(:postcard).permit(:title, :min_title,:image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_postcard
+    @postcard = Postcard.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def postcard_params
+    params.require(:postcard).permit(:title, :min_title, :title_ka, :min_title_ka, :image)
+  end
 end

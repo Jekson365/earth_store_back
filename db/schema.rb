@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_30_094923) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_03_201613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_094923) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name_ka"
   end
 
   create_table "contact_infos", force: :cascade do |t|
@@ -100,6 +101,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_094923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.string "title_ka"
+    t.string "min_title_ka"
   end
 
   create_table "postcards", force: :cascade do |t|
@@ -108,6 +111,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_30_094923) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.string "title_ka"
+    t.string "min_title_ka"
   end
 
   create_table "priors", force: :cascade do |t|
