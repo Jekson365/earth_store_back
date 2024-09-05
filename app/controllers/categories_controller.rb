@@ -22,6 +22,7 @@ class CategoriesController < ApplicationController
 
   def create
     result = CategoryService.new(category_params).create
+    binding.pry
     if result.is_a?(Category)
       render json: Categories::CategoriesBlueprint.render(result), status: :created
     else
@@ -53,6 +54,6 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name,:description)
   end
 end
