@@ -3,11 +3,13 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     user.role_id = 1
     if is_valid?
-      unless user.save
+      if user.save
+        render json: 'success',status: :ok
+      else
         render json: user.errors.full_messages, status: :conflict
       end
     else
-      render json: 'password does not match'
+      render json: { error: 'password does not match' }, status: :unauthorized
     end
   end
 
@@ -22,7 +24,7 @@ class UsersController < ApplicationController
 
   def get_current_user
     token = decode_token(params[:token])
-    render json: UsersBlueprint.render(User.find(token[:user_id]),view: :normal)
+    render json: UsersBlueprint.render(User.find(token[:user_id]), view: :normal)
   end
 
   def is_valid?

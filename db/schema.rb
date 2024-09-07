@@ -125,10 +125,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_05_195252) do
   end
 
   create_table "product_images", force: :cascade do |t|
-    t.bigint "product_id", null: false
+    t.bigint "about_id", null: false
     t.string "image"
     t.boolean "main", default: false
-    t.index ["product_id"], name: "index_product_images_on_product_id"
+    t.index ["about_id"], name: "index_product_images_on_about_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -188,6 +188,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_05_195252) do
   add_foreign_key "carts", "users"
   add_foreign_key "featured_products", "products"
   add_foreign_key "opening_images", "openings"
-  add_foreign_key "product_images", "products"
+  add_foreign_key "product_images", "abouts"
   add_foreign_key "products", "categories"
 end
