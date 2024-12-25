@@ -9,6 +9,9 @@ module Products
     def create_product
       product = Product.new(product_params)
       if product.save
+        image = ProductImage.find_by(product_id: product.id)
+        image.main = true
+        image.save
         product
       else
         product.errors.full_messages
@@ -17,6 +20,7 @@ module Products
 
     def update_product
       product = Product.find(@params[:id])
+
       if product.update(update_params)
         product
       else

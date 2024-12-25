@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   resources :featured_products
   resources :contact_infos
   resources :carts
+  resources :settings do
+    collection do
+      patch '/update_settings',to: 'settings#update_settings'
+    end
+  end
 
   devise_for :users
   post "/create_user",to: 'users#new'

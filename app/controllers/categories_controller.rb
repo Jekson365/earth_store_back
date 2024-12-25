@@ -22,7 +22,6 @@ class CategoriesController < ApplicationController
 
   def create
     result = CategoryService.new(category_params).create
-    binding.pry
     if result.is_a?(Category)
       render json: Categories::CategoriesBlueprint.render(result), status: :created
     else
